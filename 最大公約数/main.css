@@ -1,0 +1,50 @@
+body,html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+/* デフォルトでは非表示 */
+.error {
+    display: none;
+}
+
+/* 隣接セレクタで
+* input:invalidの隣の
+* エラーメッセージは表示する
+*/
+input:invalid+.error {
+    display: block;
+    color: red;
+    font-size: 0.9em;
+}
+
+.mitame {
+    display: flex;
+    font-size: x-large;
+}
+.sita{
+    width: 100%;
+    position: fixed;
+    bottom:0px;
+    background-color: white;
+    padding-top: 9px;
+    border-top: solid 1px gray;
+  
+}
+.sita-naka{
+    margin-left: 10px;
+}
+.contents{
+    margin-bottom: 110px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+   
+}
+#textbox{
+    margin-bottom: 105px;
+    width: 100%;
+    padding: 0;
+}

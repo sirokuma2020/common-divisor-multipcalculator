@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <div class="contents">
+        <h1 style="font-size: larger;" id="center">最大公約数を求めたい数を入れると出てきます</h1>
+
+        <div id="textbox">
+            <div style="display: flex;">
+                <span style="font-size: x-large;">1:</span>
+                <input type="number" name="ran1" id="ran1" step="1" placeholder="求めたい数">
+                <div class="error"> 数字以外もしくは全角で入力しています</div>
+            </div><br>
+            <div style="display: flex;">
+                <span style="font-size: x-large;">2:</span>
+                <input type="number" name="ran2" id="ran2" step="1" placeholder="求めたい数">
+                <div class="error">数字以外もしくは全角で入力しています</div>
+            </div><br>
+
+        </div>
+    </div>
+
+    <div class="sita">
+        <div class="sita-naka">
+            <div style="display: flex; ">
+                <span style="font-size: x-large;">計算結果:</span>
+                <input type="text" id="ban" readonly placeholder="計算結果">
+            </div>
+
+            <button onclick="Buuton();">計算</button>
+            <button onclick="kazuhuyasu();">増やす</button>
+            <button onclick="change();" id="botan">公倍数モード</button>
+            <button onclick="reset();">リセット</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
