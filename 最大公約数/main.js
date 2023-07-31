@@ -42,7 +42,6 @@ function keisan() {
     let keisanKotaeBuffer;
     if (kotaebuffer.length > 1) {//数字が一つだけならここで弾く
         while (kotaebuffer.length > 1) {//数字が一つになったら終わらせる
-            for (let i = 0; i + 1 < kotaebuffer.length; i++) {//この中で求める数のうち２つの公約数を求める
                 if (kotaebuffer.length == 1) {
                     break;
                 }
@@ -50,19 +49,9 @@ function keisan() {
                     kotaebuffer = Koubaisu;//公倍数を求めるときに一回公倍数を求めたあと求めた数で公約数を計算するため
                 }
 
-                if (kotaebuffer[i] >= kotaebuffer[i + 1]) {//どっちが大きい数字化を出すよう
-                    keisan1Buffer = kotaebuffer[i];
-                    keisan2Buffer = kotaebuffer[i + 1];
-                    console.log(keisan1Buffer);
-                    console.log(keisan2Buffer);
-                }
-                else {
-                    keisan1Buffer = kotaebuffer[i + 1];
-                    keisan2Buffer = kotaebuffer[i];
-                    console.log(keisan2Buffer);
-                    console.log(keisan1Buffer);
-                }
-                while (0 !== keisan1Buffer % keisan2Buffer) {//最初から割り切れるならここをスキップして小さい方の数字をそのまま出す
+                keisan1Buffer = Math.max(kotaebuffer[0],kotaebuffer[1])
+                keisan2Buffer = Math.min(kotaebuffer[0],kotaebuffer[1])
+                while (true) {//最初から割り切れるならここをスキップして小さい方の数字をそのまま出す
                     keisanKotaeBuffer = keisan1Buffer % keisan2Buffer;
                     console.log(keisanKotaeBuffer);
                     if (0 == keisanKotaeBuffer) {//求め終わったら止めるよう
@@ -75,20 +64,11 @@ function keisan() {
                     keisan2Buffer = keisan2Buffer * -1n;
                 }
                
-                if (KoubaisuSwith == 1) {//公倍数を求めるときよう
-                    Koubaisu[i] = Koubaisu[i] / keisan2Buffer;
-                    console.log(Koubaisu[i]);
-                    Koubaisu[i + 1] = Koubaisu[i + 1] / keisan2Buffer;
-                    console.log(Koubaisu[i + 1]);
-                    Koubaisu[i] = keisan2Buffer * Koubaisu[i] * Koubaisu[i + 1];
-                    console.log(Koubaisu[i]);
-                    Koubaisu.splice(i + 1, 1);
-                }
-                else {
-                    kotaebuffer.splice(i + 1, 1);//求め終わった数を消すよう
-                }
+
+                    kotaebuffer[0] = keisan2Buffer;
+                    kotaebuffer.splice(1, 1);//求め終わった数を消すよう
                 console.log(kotaebuffer);
-            }
+            
         }
         if (KoubaisuSwith == 1) {
             return (Koubaisu[0]);
@@ -103,13 +83,12 @@ function keisan() {
 }
 
 function Buuton() {
-    let i2 = 0;
     for (let i = 0; i < nyuuryokuran; i++) {
         if (document.getElementById('ran' + (i + 1)).value !== "") {//何も入力されてなかったら飛ばす
-            kotaebuffer[i2] = document.getElementById('ran' + (i + 1)).value;
-            i2 += 1;
+            kotaebuffer[i] = document.getElementById('ran' + (i + 1)).value;
         }
     }
+    kotaebuffer.map(Number)
     console.log(kotaebuffer);
     if (KoubaisuSwith == 1) {
         Koubaisu = kotaebuffer;
@@ -137,9 +116,17 @@ function kazuhuyasu() {//入力欄増やすよう
     // newDiv.id = "ban222";
     newDiv.id = "sotowaku" + nyuuryokuran;
     newDiv.innerHTML = `
-<div style="display: flex;"><span style="font-size: x-large;">` + nyuuryokuran + `:</span><input type="number" name="ran` + nyuuryokuran + `" id="ran` + nyuuryokuran + `" step="1" placeholder="求めたい数">
-        <div class="error">数字以外もしくは全角で入力しています</div><div><button style="padding-right: 20px !important;padding-left: 20px !important;" onclick="remove(` + nyuuryokuran +`);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="width:10px"><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg></button></div>
-    </div><br>`;
+<div style="display: flex;">
+    <span style="font-size: x-large;">` + nyuuryokuran + `:</span>
+        <input type="number" name="ran` + nyuuryokuran + `" id="ran` + nyuuryokuran + `" step="1" placeholder="求めたい数">
+        <div class="error">数字以外もしくは全角で入力しています</div>
+        <div>
+            <button style="padding-right: 20px !important;padding-left: 20px !important;" onclick="remove(` + nyuuryokuran +`);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="width:10px"><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/>
+                </svg>
+            </button>
+        </div>
+</div><br>`;
 
 
 
