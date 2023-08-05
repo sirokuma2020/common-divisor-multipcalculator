@@ -43,7 +43,7 @@ function keisan() {
                     break;
                 }
                 if (KoubaisuSwith == 1) {
-                    kotaebuffer = data.Koubaisu;//公倍数を求めるときに一回公倍数を求めたあと求めた数で公約数を計算するため
+                    data.Koubaisu = kotaebuffer;//公倍数を求めるときに一回公倍数を求めたあと求めた数で公約数を計算するため
                 }
 
                 keisan_buffer[0] = Math.max(kotaebuffer[0],kotaebuffer[1])
@@ -76,7 +76,7 @@ function keisan() {
         return ("");
     }
 }
-const KeisanKoubaisu = (data_buffer,koyakusu) => {
+const Keisan_Koubaisu = (data_buffer,koyakusu) => {
     let answer = 1
     data_buffer.forEach(element => {
         answer = answer * (element / koyakusu)
