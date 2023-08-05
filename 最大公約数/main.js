@@ -7,8 +7,7 @@ let a1;
 let b1;
 let kotae;
 let KoubaisuSwith = 0;
-let Koubaisu = [];
-kotaebuffer = [];
+let kotaebuffer = [];
 function nemui(a, b) {//下の関数のもとになったもの　ユークリッドの控除法で求めています。
     if (a >= b) {
         a1 = a;
@@ -35,51 +34,54 @@ function nemui(a, b) {//下の関数のもとになったもの　ユークリ�
     keisancount += 1;
     return (b1);
 }
-
+let data = {}
 function keisan() {
-    let keisan1Buffer;
-    let keisan2Buffer;
-    let keisanKotaeBuffer;
+    let keisan_buffer = [];
     if (kotaebuffer.length > 1) {//数字が一つだけならここで弾く
         while (kotaebuffer.length > 1) {//数字が一つになったら終わらせる
                 if (kotaebuffer.length == 1) {
                     break;
                 }
                 if (KoubaisuSwith == 1) {
-                    kotaebuffer = Koubaisu;//公倍数を求めるときに一回公倍数を求めたあと求めた数で公約数を計算するため
+                    kotaebuffer = data.Koubaisu;//公倍数を求めるときに一回公倍数を求めたあと求めた数で公約数を計算するため
                 }
 
-                keisan1Buffer = Math.max(kotaebuffer[0],kotaebuffer[1])
-                keisan2Buffer = Math.min(kotaebuffer[0],kotaebuffer[1])
+                keisan_buffer[0] = Math.max(kotaebuffer[0],kotaebuffer[1])
+                keisan_buffer[1] = Math.min(kotaebuffer[0],kotaebuffer[1])
                 while (true) {//最初から割り切れるならここをスキップして小さい方の数字をそのまま出す
-                    keisanKotaeBuffer = keisan1Buffer % keisan2Buffer;
-                    console.log(keisanKotaeBuffer);
-                    if (0 == keisanKotaeBuffer) {//求め終わったら止めるよう
+                    keisan_buffer[2] = keisan_buffer[0] % keisan_buffer[1];
+                    console.log(keisan_buffer[2]);
+                    if (0 == keisan_buffer[2]) {//求め終わったら止めるよう
                         break;
                     }
-                    keisan1Buffer = keisan2Buffer;
-                    keisan2Buffer = keisanKotaeBuffer;
+                    keisan_buffer[0] = keisan_buffer[1];
+                    keisan_buffer[1] = keisan_buffer[2];
                 }
-                if (keisan2Buffer < 0) {
-                    keisan2Buffer = keisan2Buffer * -1n;
+                if (keisan_buffer[1] < 0) {
+                    keisan_buffer[1] = keisan_buffer[1] * -1n;
                 }
-               
-
-                    kotaebuffer[0] = keisan2Buffer;
+                    kotaebuffer[0] = keisan_buffer[1];
                     kotaebuffer.splice(1, 1);//求め終わった数を消すよう
                 console.log(kotaebuffer);
             
         }
         if (KoubaisuSwith == 1) {
-            return (Koubaisu[0]);
+            return Keisan_Koubaisu(data.Koubaisu,keisan_buffer[1])
         }
         else {
-            return (keisan2Buffer);
+            return (keisan_buffer[1]);
         }
     }
     else {
         return ("");
     }
+}
+const KeisanKoubaisu = (data_buffer,koyakusu) => {
+    let answer = 1
+    data_buffer.forEach(element => {
+        answer = answer * (element / koyakusu)
+    });
+    return answer
 }
 
 function Buuton() {
