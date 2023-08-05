@@ -28,9 +28,10 @@ input:invalid+.error {
     width: 100%;
     position: fixed;
     bottom:0px;
-    background-color: white;
     padding-top: 9px;
     border-top: solid 1px gray;
+    background-color: var(--background-body);
+
   
 }
 .sita-naka{
