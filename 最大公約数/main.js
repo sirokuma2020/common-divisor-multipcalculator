@@ -90,7 +90,7 @@ function Buuton() {
             kotaebuffer[i] = document.getElementById('ran' + (i + 1)).value;
         }
     }
-    kotaebuffer.map(Number)
+    kotaebuffer = kotaebuffer.map(Number)
     console.log(kotaebuffer);
     if (KoubaisuSwith == 1) {
         Koubaisu = kotaebuffer;
