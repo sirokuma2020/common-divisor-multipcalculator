@@ -100,7 +100,7 @@ function Buuton() {
 function change() {//公倍数モードと公約数モードの切替
     if (KoubaisuSwith == 0) {
         KoubaisuSwith = 1;
-        document.getElementById("center").innerHTML = "最大公倍数を求めたい数を入れると出てきます";
+        document.getElementById("center").innerHTML = "最小公倍数を求めたい数を入れると出てきます";
         document.getElementById("botan").innerHTML = "公約数モード";
     }
     else {
