@@ -38,9 +38,6 @@ let data = {}
 function keisan() {
     let keisan_buffer = [];
     if (kotaebuffer.length > 1) {//数字が一つだけならここで弾く
-        if (KoubaisuSwith == 1) {
-                    data.Koubaisu = kotaebuffer;//公倍数を求めるときに一回公倍数を求めたあと求めた数で公約数を計算するため
-        }
         while (kotaebuffer.length > 1) {//数字が一つになったら終わらせる
                 if (kotaebuffer.length == 1) {
                     break;
@@ -94,7 +91,7 @@ function Buuton() {
     kotaebuffer = kotaebuffer.map(Number)
     console.log(kotaebuffer);
     if (KoubaisuSwith == 1) {
-        Koubaisu = kotaebuffer;
+        data.Koubaisu = kotaebuffer;
     }
     document.getElementById('ban').value = keisan();
 }
