@@ -36,18 +36,6 @@ function nemui(a, b) {//下の関数のもとになったもの　ユークリ�
 }
 let data = {}
 function keisan() {
-<<<<<<< Updated upstream
-    let keisan_buffer = [];
-    if (kotaebuffer.length > 1) {//数字が一つだけならここで弾く
-        while (kotaebuffer.length > 1) {//数字が一つになったら終わらせる
-                if (kotaebuffer.length == 1) {
-                    break;
-                }
-
-
-                keisan_buffer[0] = Math.max(kotaebuffer[0],kotaebuffer[1])
-                keisan_buffer[1] = Math.min(kotaebuffer[0],kotaebuffer[1])
-=======
     let keisan1Buffer;
     let keisan2Buffer;
     let keisan3Buffer = kotaebuffer[0]
@@ -56,7 +44,6 @@ function keisan() {
         for (let i = 0; i < kotaebuffer.length; i++) {
                 keisan1Buffer = Math.max(keisan3Buffer,kotaebuffer[1])
                 keisan2Buffer = Math.min(keisan3Buffer,kotaebuffer[i + 1])
->>>>>>> Stashed changes
                 while (true) {//最初から割り切れるならここをスキップして小さい方の数字をそのまま出す
                     keisan_buffer[2] = keisan_buffer[0] % keisan_buffer[1];
                     console.log(keisan_buffer[2]);
@@ -69,16 +56,9 @@ function keisan() {
                 if (keisan_buffer[1] < 0) {
                     keisan_buffer[1] = keisan_buffer[1] * -1n;
                 }
-<<<<<<< Updated upstream
-                    kotaebuffer[0] = keisan_buffer[1];
-                    kotaebuffer.splice(1, 1);//求め終わった数を消すよう
-                console.log(kotaebuffer);
-            
-=======
                
 
                     keisan3Buffer = keisan2Buffer;            
->>>>>>> Stashed changes
         }
     
         if (KoubaisuSwith == 1) {
