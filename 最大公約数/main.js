@@ -36,28 +36,30 @@ let kotaebuffer = [];
 }*/
 let keisan_buffer = []
 function keisan() {
-    keisan_buffer[2] = kotaebuffer[0]
+    keisan_buffer[1] = kotaebuffer[0]
     if (kotaebuffer.length > 1) {//数字が一つだけならここで弾く
-        for (let i = 0; i < kotaebuffer.length; i++) {
-                keisan_buffer[0] = Math.max(keisan_buffer[2],kotaebuffer[1])
-                keisan_buffer[1] = Math.min(keisan_buffer[2],kotaebuffer[i + 1])
+        for (let i = 0; i < kotaebuffer.length - 1; i++) {
+            if (keisan_buffer[2] > kotaebuffer[i + 1] ){
+                keisan_buffer[0] = keisan_buffer[1]
+                keisan_buffer[1] = kotaebuffer[i + 1] 
+            } else {
+                keisan_buffer[1] = keisan_buffer[1]
+                keisan_buffer[0] = kotaebuffer[i + 1] 
+            }
+
                 while (true) {//最初から割り切れるならここをスキップして小さい方の数字をそのまま出す
                     keisan_buffer[2] = keisan_buffer[0] % keisan_buffer[1];
                     console.log(keisan_buffer[2]);
-                    if (0 == keisan_buffer[2]) {//求め終わったら止めるよう
+                    if (keisan_buffer[2] == 0) {//求め終わったら止めるよう
                         break;
                     }
                     keisan_buffer[0] = keisan_buffer[1];
                     keisan_buffer[1] = keisan_buffer[2];
                 }
-                if (keisan_buffer[1] < 0) {
-                    keisan_buffer[1] = keisan_buffer[1] * -1n;
-                }
                
 
-                    keisan_buffer[2] = keisan_buffer[1];           
         }
-    
+
 
         if (KoubaisuSwith == 1) {
             return Keisan_Koubaisu(kotaebuffer,keisan_buffer[1])
@@ -71,7 +73,7 @@ function keisan() {
     }
 }
 const Keisan_Koubaisu = (data_buffer,koyakusu) => {
-    let answer = 1
+    let answer = koyakusu
     data_buffer.forEach(element => {
         answer = answer * (element / koyakusu)
     });
@@ -79,12 +81,20 @@ const Keisan_Koubaisu = (data_buffer,koyakusu) => {
 }
 
 function Buuton() {
+    kotaebuffer = []
     for (let i = 0; i < nyuuryokuran; i++) {
         if (document.getElementById('ran' + (i + 1)).value !== "") {//何も入力されてなかったら飛ばす
             kotaebuffer[i] = document.getElementById('ran' + (i + 1)).value;
         }
     }
-    kotaebuffer = kotaebuffer.map(Number)
+    kotaebuffer.forEach((e,i) => {
+        if (BigInt(e) > 0n) {
+            kotaebuffer[i] = BigInt(e)
+        } else {
+            kotaebuffer[i] = -1n * BigInt(e)
+        }
+        console.log(kotaebuffer)
+    });
     console.log(kotaebuffer);
     document.getElementById('ban').value = keisan();
 }
