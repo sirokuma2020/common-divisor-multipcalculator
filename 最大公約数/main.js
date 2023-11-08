@@ -34,6 +34,7 @@ let kotaebuffer = [];
     keisancount += 1;
     return (b1);
 }*/
+let keisan_buffer = []
 function keisan() {
     keisan_buffer[2] = kotaebuffer[0]
     if (kotaebuffer.length > 1) {//数字が一つだけならここで弾く
