@@ -8,7 +8,7 @@ let b1;
 let kotae;
 let KoubaisuSwith = 0;
 let kotaebuffer = [];
-function nemui(a, b) {//下の関数のもとになったもの　ユークリッドの控除法で求めています。
+/*function nemui(a, b) {//下の関数のもとになったもの　ユークリッドの控除法で求めています。
     if (a >= b) {
         a1 = a;
         b1 = b;
@@ -33,17 +33,13 @@ function nemui(a, b) {//下の関数のもとになったもの　ユークリ�
     kotaebuffer[keisancount] = b1;
     keisancount += 1;
     return (b1);
-}
-let data = {}
+}*/
 function keisan() {
-    let keisan1Buffer;
-    let keisan2Buffer;
-    let keisan3Buffer = kotaebuffer[0]
-    let keisanKotaeBuffer;
+    keisan_buffer[2] = kotaebuffer[0]
     if (kotaebuffer.length > 1) {//数字が一つだけならここで弾く
         for (let i = 0; i < kotaebuffer.length; i++) {
-                keisan1Buffer = Math.max(keisan3Buffer,kotaebuffer[1])
-                keisan2Buffer = Math.min(keisan3Buffer,kotaebuffer[i + 1])
+                keisan_buffer[0] = Math.max(keisan_buffer[2],kotaebuffer[1])
+                keisan_buffer[1] = Math.min(keisan_buffer[2],kotaebuffer[i + 1])
                 while (true) {//最初から割り切れるならここをスキップして小さい方の数字をそのまま出す
                     keisan_buffer[2] = keisan_buffer[0] % keisan_buffer[1];
                     console.log(keisan_buffer[2]);
@@ -58,11 +54,12 @@ function keisan() {
                 }
                
 
-                    keisan3Buffer = keisan2Buffer;            
+                    keisan_buffer[2] = keisan_buffer[1];           
         }
     
+
         if (KoubaisuSwith == 1) {
-            return Keisan_Koubaisu(data.Koubaisu,keisan_buffer[1])
+            return Keisan_Koubaisu(kotaebuffer,keisan_buffer[1])
         }
         else {
             return (keisan_buffer[1]);
@@ -88,12 +85,6 @@ function Buuton() {
     }
     kotaebuffer = kotaebuffer.map(Number)
     console.log(kotaebuffer);
-<<<<<<< Updated upstream
-    if (KoubaisuSwith == 1) {
-        data.Koubaisu = kotaebuffer;
-    }
-=======
->>>>>>> Stashed changes
     document.getElementById('ban').value = keisan();
 }
 function change() {//公倍数モードと公約数モードの切替
