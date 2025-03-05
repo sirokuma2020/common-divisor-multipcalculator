@@ -84,7 +84,7 @@ function Buuton() {
     kotaebuffer = []
     for (let i = 0; i < nyuuryokuran; i++) {
         if (document.getElementById('ran' + (i + 1)).value !== "") {//何も入力されてなかったら飛ばす
-            kotaebuffer[i] = document.getElementById('ran' + (i + 1)).value;
+            kotaebuffer.push(document.getElementById('ran' + (i + 1)).value);
         }
     }
     kotaebuffer.forEach((e,i) => {
